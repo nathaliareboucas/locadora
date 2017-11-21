@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceException;
 
 import com.algaworks.curso.jpa2.modelo.Fabricante;
 import com.algaworks.curso.jpa2.service.NegocioException;
@@ -14,7 +15,7 @@ public class FabricanteDAO implements Serializable {
 
 	@Inject
 	private EntityManager em;
-	
+
 	public void salvar(Fabricante fabricante) {
 		em.merge(fabricante);
 	}
@@ -27,7 +28,7 @@ public class FabricanteDAO implements Serializable {
 	@Transactional
 	public void excluir(Fabricante fabricante) throws NegocioException {
 		Fabricante fabricanteTemp = em.find(Fabricante.class, fabricante.getCodigo());
-		
+
 		em.remove(fabricanteTemp);
 		em.flush();
 	}
@@ -35,5 +36,5 @@ public class FabricanteDAO implements Serializable {
 	public Fabricante buscarPeloCodigo(Long codigo) {
 		return em.find(Fabricante.class, codigo);
 	}
-	
+
 }
