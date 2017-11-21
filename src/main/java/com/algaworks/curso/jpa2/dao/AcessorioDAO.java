@@ -26,6 +26,7 @@ public class AcessorioDAO implements Serializable {
 		manager.merge(fabricante);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Acessorio> buscarTodos() {
 		return manager.createQuery("from Acessorio").getResultList();
 	}
