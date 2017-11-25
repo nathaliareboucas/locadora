@@ -23,15 +23,15 @@ public class NovoAluguelBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Aluguel aluguel;
-
+	
 	private List<Carro> carros;
-
+	
 	@Inject
 	private CadastroAluguelService cadastroAluguelService;
-
+	
 	@Inject
 	private CarroDAO carroDAO;
-
+	
 	public void salvar() {
 		try {
 			this.cadastroAluguelService.salvar(aluguel);
@@ -39,17 +39,17 @@ public class NovoAluguelBean implements Serializable {
 		} catch (NegocioException e) {
 			FacesUtil.addErrorMessage(e.getMessage());
 		}
-
+		
 		this.limpar();
 	}
-
+	
 	@PostConstruct
 	public void inicializar() {
 		this.limpar();
-
+		
 		this.carros = this.carroDAO.buscarTodos();
 	}
-
+	
 	public void limpar() {
 		this.aluguel = new Aluguel();
 		this.aluguel.setApoliceSeguro(new ApoliceSeguro());
@@ -58,7 +58,6 @@ public class NovoAluguelBean implements Serializable {
 	public Aluguel getAluguel() {
 		return aluguel;
 	}
-
 	public void setAluguel(Aluguel aluguel) {
 		this.aluguel = aluguel;
 	}

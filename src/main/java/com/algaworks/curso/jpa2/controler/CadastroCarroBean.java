@@ -27,26 +27,26 @@ public class CadastroCarroBean implements Serializable {
 	private Carro carro;
 
 	private List<ModeloCarro> modelosCarros;
-
+	
 	private List<Acessorio> acessorios;
-
+	
 	@Inject
 	private CadastroCarroService cadastroCarroService;
-
+	
 	@Inject
 	private AcessorioDAO acessorioDAO;
-
+	
 	@Inject
 	private ModeloCarroDAO modeloCarroDAO;
-
+	
 	@PostConstruct
 	public void inicializar() {
 		this.limpar();
-
+		
 		this.acessorios = acessorioDAO.buscarTodos();
 		this.modelosCarros = this.modeloCarroDAO.buscarTodos();
 	}
-
+	
 	public void salvar() {
 		try {
 			this.cadastroCarroService.salvar(carro);
@@ -57,10 +57,10 @@ public class CadastroCarroBean implements Serializable {
 			e.printStackTrace();
 			FacesUtil.addErrorMessage("Erro desconhecido. Contatar o administrador");
 		}
-
+		
 		this.limpar();
 	}
-
+	
 	public void limpar() {
 		this.carro = new Carro();
 		this.carro.setAcessorios(new ArrayList<Acessorio>());
@@ -69,7 +69,6 @@ public class CadastroCarroBean implements Serializable {
 	public Carro getCarro() {
 		return carro;
 	}
-
 	public void setCarro(Carro carro) {
 		this.carro = carro;
 	}

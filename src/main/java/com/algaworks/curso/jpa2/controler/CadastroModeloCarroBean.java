@@ -22,15 +22,15 @@ public class CadastroModeloCarroBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private ModeloCarro modeloCarro;
-
+	
 	private List<Fabricante> fabricantes;
-
+	
 	@Inject
 	private CadastroModeloCarroService cadastroModeloCarroService;
-
+	
 	@Inject
 	private FabricanteDAO fabricanteDAO;
-
+	
 	public void salvar() {
 		try {
 			this.cadastroModeloCarroService.salvar(modeloCarro);
@@ -38,16 +38,16 @@ public class CadastroModeloCarroBean implements Serializable {
 		} catch (NegocioException e) {
 			FacesUtil.addErrorMessage(e.getMessage());
 		}
-
+		
 		this.limpar();
 	}
-
+	
 	@PostConstruct
 	public void inicializar() {
 		this.limpar();
 		this.fabricantes = fabricanteDAO.buscarTodos();
 	}
-
+	
 	public void limpar() {
 		this.modeloCarro = new ModeloCarro();
 	}
@@ -55,7 +55,6 @@ public class CadastroModeloCarroBean implements Serializable {
 	public ModeloCarro getModeloCarro() {
 		return modeloCarro;
 	}
-
 	public void setModeloCarro(ModeloCarro modeloCarro) {
 		this.modeloCarro = modeloCarro;
 	}
@@ -63,5 +62,5 @@ public class CadastroModeloCarroBean implements Serializable {
 	public List<Fabricante> getFabricantes() {
 		return fabricantes;
 	}
-
+	
 }

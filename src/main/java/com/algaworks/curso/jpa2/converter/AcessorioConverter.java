@@ -13,15 +13,15 @@ import com.algaworks.curso.jpa2.cdiUtil.CDIServiceLocator;
 public class AcessorioConverter implements Converter {
 
 	private AcessorioDAO acessorioDAO;
-
+	
 	public AcessorioConverter() {
 		this.acessorioDAO = CDIServiceLocator.getBean(AcessorioDAO.class);
 	}
-
+	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		Acessorio retorno = null;
-
+		
 		if (value != null) {
 			retorno = this.acessorioDAO.buscarPeloCodigo(new Long(value));
 		}
@@ -34,10 +34,10 @@ public class AcessorioConverter implements Converter {
 		if (value != null) {
 			Long codigo = ((Acessorio) value).getCodigo();
 			String retorno = (codigo == null ? null : codigo.toString());
-
+			
 			return retorno;
 		}
-
+		
 		return "";
 	}
 

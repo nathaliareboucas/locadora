@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 
 import com.algaworks.curso.jpa2.modelo.Carro;
@@ -40,6 +41,16 @@ public class CarroDAO implements Serializable {
 		} catch (PersistenceException e) {
 			throw new NegocioException("Carro não pode ser excluído.");
 		}
+	}
+
+	public Carro buscarCarroComAcessorios(Long codigo) {
+		try {
+			return (Carro) manager.createQuery("select c from Carro c JOIN c.acessorios a where c.codigo = :codigo")
+					.setParameter("codigo", codigo).getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+
 	}
 
 }

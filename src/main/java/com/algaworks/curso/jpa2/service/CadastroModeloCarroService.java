@@ -11,7 +11,7 @@ import com.algaworks.curso.jpa2.jpaUtil.Transactional;
 public class CadastroModeloCarroService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Inject
 	ModeloCarroDAO modeloCarroDAO;
 
@@ -20,12 +20,13 @@ public class CadastroModeloCarroService implements Serializable {
 		if (modeloCarro.getDescricao() == null || modeloCarro.getDescricao().trim().equals("")) {
 			throw new NegocioException("O nome do modelo é obrigatório.");
 		}
-
+		
 		if (modeloCarro.getFabricante() == null) {
 			throw new NegocioException("O fabricante e obrigatório");
 		}
-
+		
 		this.modeloCarroDAO.salvar(modeloCarro);
 	}
 
+	
 }

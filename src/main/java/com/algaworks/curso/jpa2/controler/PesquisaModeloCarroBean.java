@@ -18,23 +18,23 @@ import com.algaworks.curso.jpa2.jsfUtil.FacesUtil;
 public class PesquisaModeloCarroBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	private List<ModeloCarro> modelosCarro;
-
+	
 	private ModeloCarro modeloCarroSelecionado;
-
+	
 	@Inject
 	ModeloCarroDAO modeloCarroDAO;
 
 	public List<ModeloCarro> getModelosCarro() {
 		return modelosCarro;
 	}
-
+	
 	@PostConstruct
 	public void inicializar() {
 		this.modelosCarro = this.modeloCarroDAO.buscarTodos();
 	}
-
+	
 	public void excluir() {
 		try {
 			modeloCarroDAO.excluir(modeloCarroSelecionado);
@@ -44,13 +44,12 @@ public class PesquisaModeloCarroBean implements Serializable {
 			FacesUtil.addErrorMessage(e.getMessage());
 		}
 	}
-
+	
 	public ModeloCarro getModeloCarroSelecionado() {
 		return modeloCarroSelecionado;
 	}
-
 	public void setModeloCarroSelecionado(ModeloCarro modeloCarroSelecionado) {
 		this.modeloCarroSelecionado = modeloCarroSelecionado;
 	}
-
+	
 }

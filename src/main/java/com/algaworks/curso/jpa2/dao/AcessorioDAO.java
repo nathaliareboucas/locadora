@@ -14,14 +14,14 @@ import com.algaworks.curso.jpa2.jpaUtil.Transactional;
 public class AcessorioDAO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Inject
 	private EntityManager manager;
-
+	
 	public Acessorio buscarPeloCodigo(Long codigo) {
 		return manager.find(Acessorio.class, codigo);
 	}
-
+	
 	public void salvar(Acessorio fabricante) {
 		manager.merge(fabricante);
 	}
@@ -30,7 +30,7 @@ public class AcessorioDAO implements Serializable {
 	public List<Acessorio> buscarTodos() {
 		return manager.createQuery("from Acessorio").getResultList();
 	}
-
+	
 	@Transactional
 	public void excluir(Acessorio fabricante) throws NegocioException {
 		fabricante = buscarPeloCodigo(fabricante.getCodigo());

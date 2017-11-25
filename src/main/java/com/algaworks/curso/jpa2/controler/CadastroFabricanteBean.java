@@ -16,29 +16,29 @@ import com.algaworks.curso.jpa2.jsfUtil.FacesUtil;
 @ViewScoped
 public class CadastroFabricanteBean implements Serializable {
 
-	private static final long serialVersionUID = 3249690253279146874L;
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private CadastroFabricanteService cadastroFabricanteService;
-
+	
 	private Fabricante fabricante;
-
+	
 	public void salvar() {
 		try {
 			this.cadastroFabricanteService.salvar(fabricante);
 			FacesUtil.addSuccessMessage("Fabricante salvo com sucesso!");
-
+			
 			this.limpar();
 		} catch (NegocioException e) {
 			FacesUtil.addErrorMessage(e.getMessage());
 		}
 	}
-
+	
 	@PostConstruct
 	public void init() {
 		this.limpar();
 	}
-
+	
 	public void limpar() {
 		this.fabricante = new Fabricante();
 	}
@@ -46,9 +46,10 @@ public class CadastroFabricanteBean implements Serializable {
 	public Fabricante getFabricante() {
 		return fabricante;
 	}
-
 	public void setFabricante(Fabricante fabricante) {
 		this.fabricante = fabricante;
 	}
-
+	
+	
+	
 }

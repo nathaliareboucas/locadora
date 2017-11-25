@@ -22,15 +22,15 @@ public class PesquisaAcessorioBean implements Serializable {
 
 	@Inject
 	AcessorioDAO acessorioDAO;
-
+	
 	private List<Acessorio> acessorios = new ArrayList<>();
-
+	
 	private Acessorio acessorioSelecionado;
-
+	
 	public List<Acessorio> getAcessorios() {
 		return acessorios;
 	}
-
+	
 	public void excluir() {
 		try {
 			acessorioDAO.excluir(acessorioSelecionado);
@@ -44,11 +44,10 @@ public class PesquisaAcessorioBean implements Serializable {
 	public Acessorio getAcessorioSelecionado() {
 		return acessorioSelecionado;
 	}
-
 	public void setAcessorioSelecionado(Acessorio acessorioSelecionado) {
 		this.acessorioSelecionado = acessorioSelecionado;
 	}
-
+	
 	@PostConstruct
 	public void inicializar() {
 		acessorios = acessorioDAO.buscarTodos();

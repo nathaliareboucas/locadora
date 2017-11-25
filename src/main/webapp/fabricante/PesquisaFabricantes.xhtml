@@ -39,7 +39,7 @@
 						<f:param name="fabricante" value="#{fabricante.codigo}" />
 					</p:button>
 					<p:commandButton icon="ui-icon-trash" title="Excluir"
-						oncomplete="confirmacaoExclusao.show()" process="@this"
+						oncomplete="PF('confirmacaoExclusao').show()" process="@this"
 						update=":frmPesquisa:confirmacaoExclusaoDialog">
 						<f:setPropertyActionListener
 							target="#{pesquisaFabricanteBean.fabricanteSelecionado}"

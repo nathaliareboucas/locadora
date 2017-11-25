@@ -17,45 +17,41 @@ public class Aluguel {
 	private Long codigo;
 	private BigDecimal valorTotal;
 	private Carro carro;
-
+	
 	private ApoliceSeguro apoliceSeguro;
-
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long getCodigo() {
 		return codigo;
 	}
-
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
-
+	
 	public BigDecimal getValorTotal() {
 		return valorTotal;
 	}
-
 	public void setValorTotal(BigDecimal valorTotal) {
 		this.valorTotal = valorTotal;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "codigo_carro")
-	public Carro getCarro() {
-		return carro;
-	}
-
-	public void setCarro(Carro carro) {
-		this.carro = carro;
-	}
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "codigo_apolice_seguro")
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="codigo_apolice_seguro")
 	public ApoliceSeguro getApoliceSeguro() {
 		return apoliceSeguro;
 	}
-
 	public void setApoliceSeguro(ApoliceSeguro apoliceSeguro) {
 		this.apoliceSeguro = apoliceSeguro;
+	}
+	
+	@ManyToOne
+	@JoinColumn(name="codigo_carro")
+	public Carro getCarro() {
+		return carro;
+	}
+	public void setCarro(Carro carro) {
+		this.carro = carro;
 	}
 
 	@Override
@@ -65,7 +61,7 @@ public class Aluguel {
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		return result;
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -82,5 +78,5 @@ public class Aluguel {
 			return false;
 		return true;
 	}
-
+	
 }
