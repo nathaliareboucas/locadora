@@ -1,6 +1,7 @@
 package com.algaworks.curso.jpa2.controler;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -9,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.algaworks.curso.jpa2.dao.FabricanteDAO;
+import com.algaworks.curso.jpa2.modelo.Categoria;
 import com.algaworks.curso.jpa2.modelo.Fabricante;
 import com.algaworks.curso.jpa2.modelo.ModeloCarro;
 import com.algaworks.curso.jpa2.service.CadastroModeloCarroService;
@@ -22,15 +24,16 @@ public class CadastroModeloCarroBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private ModeloCarro modeloCarro;
-	
+
 	private List<Fabricante> fabricantes;
-	
+	private List<Categoria> categorias;
+
 	@Inject
 	private CadastroModeloCarroService cadastroModeloCarroService;
-	
+
 	@Inject
 	private FabricanteDAO fabricanteDAO;
-	
+
 	public void salvar() {
 		try {
 			this.cadastroModeloCarroService.salvar(modeloCarro);
@@ -38,16 +41,17 @@ public class CadastroModeloCarroBean implements Serializable {
 		} catch (NegocioException e) {
 			FacesUtil.addErrorMessage(e.getMessage());
 		}
-		
+
 		this.limpar();
 	}
-	
+
 	@PostConstruct
 	public void inicializar() {
 		this.limpar();
 		this.fabricantes = fabricanteDAO.buscarTodos();
+		this.categorias = Arrays.asList(Categoria.values());
 	}
-	
+
 	public void limpar() {
 		this.modeloCarro = new ModeloCarro();
 	}
@@ -55,6 +59,7 @@ public class CadastroModeloCarroBean implements Serializable {
 	public ModeloCarro getModeloCarro() {
 		return modeloCarro;
 	}
+
 	public void setModeloCarro(ModeloCarro modeloCarro) {
 		this.modeloCarro = modeloCarro;
 	}
@@ -62,5 +67,9 @@ public class CadastroModeloCarroBean implements Serializable {
 	public List<Fabricante> getFabricantes() {
 		return fabricantes;
 	}
-	
+
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+
 }
